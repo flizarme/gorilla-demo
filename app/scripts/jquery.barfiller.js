@@ -18,7 +18,7 @@
             tooltip: true,
             duration: 1000,
             animateOnResize: true,
-            textToShow: "%",
+            textToShow: '%',
             percentage: 100
         }, options);
 
@@ -74,7 +74,7 @@
             *******************************/
             setEventHandlers: function() {
                 if(settings.animateOnResize) {
-                    $(window).on("resize", function(event){
+                    $(window).on('resize', function(event){
                         clearTimeout(resizeTimeout);
                         resizeTimeout = setTimeout(function() { 
                         methods.refill(); 
