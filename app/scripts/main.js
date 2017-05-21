@@ -32,13 +32,16 @@
     tooltip: true,
 
     // duration in ms
-    duration: 500,
+    duration: 1000,
 
     // re-animate on resize
     animateOnResize: true,
 
-    // custom text to show
-    textToShow: CURRENCY + INITIAL_VALUE,
+    // currency
+    currency: CURRENCY,
+
+    // value up to
+    value: INITIAL_VALUE,
 
     // percentage to show
     percentage: (INITIAL_VALUE * 100) / TARGET // calculating percentage

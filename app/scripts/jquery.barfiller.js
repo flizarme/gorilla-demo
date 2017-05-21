@@ -18,7 +18,8 @@
             tooltip: true,
             duration: 1000,
             animateOnResize: true,
-            textToShow: '%',
+            currency: '%',
+            value: 100,
             percentage: 100
         }, options);
 
@@ -34,6 +35,7 @@
         var toolTip = object.find('.tip');
         var resizeTimeout;
         var transitionSupport = false;
+        var initValue = 0;
         var transitionPrefix;
 
         /******************************
@@ -50,7 +52,6 @@
                     }
 
                     methods.appendHTML();
-                    methods.setEventHandlers();
                     methods.initializeItems();
                 });
             },
@@ -65,7 +66,7 @@
                 if(!settings.tooltip) {
                     toolTip.css('display', 'none');
                 }
-                toolTip.text(settings.textToShow);
+                toolTip.text(settings.currency + initValue);
             },
             
 
@@ -157,6 +158,17 @@
                 var toolTipOffset = barWidth - toolTip.width();
                 fill.css( methods.getTransition(barWidth, settings.duration, 'width'));
                 toolTip.css( methods.getTransition(toolTipOffset, settings.duration, 'left'));
+                $({percentage: initValue}).stop(true).animate({percentage: settings.value}, {
+                    duration : settings.duration,
+                    step: function () {
+                        var percentageVal = Math.round(this.percentage);
+                        toolTip.text(settings.currency + percentageVal);
+                    }
+                }).promise().done(function () {
+                    // hard set the value after animation is done to be
+                    // sure the value is correct
+                    toolTip.text(settings.currency + settings.value);
+                });
 
             },	
 
